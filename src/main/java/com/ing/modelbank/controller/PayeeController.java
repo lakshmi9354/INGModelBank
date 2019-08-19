@@ -45,4 +45,23 @@ return payeeResponse;
 return response;
 	}
 
+@Autowired
+	PayeeServiceImpl payeeServiceImpl;
+	
+	@PostMapping("/payee")
+	public ResponseEntity<ResponseDto> addPayee(@RequestBody PayeeListDto payee)
+	{
+		return new ResponseEntity<ResponseDto>(payeeServiceImpl.addPayee(payee),HttpStatus.OK);
+	}
+	
+	@GetMapping("/otpVerification/{otpNo}")
+	public ResponseEntity<ResponseDto> verifyOtp(@PathVariable("otpNo") int otpNo)
+	{
+		return new ResponseEntity<ResponseDto>(payeeServiceImpl.verifyDto(otpNo),HttpStatus.OK);
+	}
+
+	@GetMapping("/payees/{accountId}")
+	public ResponseEntity<List<PayeeDetailsDto>> payees(Integer accountId){
+		return new ResponseEntity<List<PayeeDetailsDto>>(payeeServiceImpl.payees(accountId),HttpStatus.OK);
+	}
 }

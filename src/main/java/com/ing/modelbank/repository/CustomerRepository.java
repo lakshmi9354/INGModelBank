@@ -13,5 +13,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Long>{
 public	Customer findByMobileNoAndPassword(String mobileNo, String password);
 @Query(value = "select c.* from customer c where customer_id =:customerId",nativeQuery = true)
 public Customer findByCustomerId(@Param("customerId") Integer customerId);
-
+public Optional<Customer> findByCustomerId(int customerId);
 }

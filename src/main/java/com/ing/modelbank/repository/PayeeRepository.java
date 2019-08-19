@@ -25,5 +25,6 @@ Optional<Payee>  findBypayeeId(int payeeId);
 @Transactional
 @Query("update Payee c set c.payeeAccountNumber=:accountNumber where c.payeeId=:payeeId")
 void updatePayee(int payeeId,int accountNumber);
-
+@Query(value = "select p.* from payeelist p where p.account_id =:accountId",nativeQuery = true)
+	List<Payee> findByCustomerId(@Param("accountId")Integer accountId);
 }
